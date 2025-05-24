@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package auth.v1;
+
+option go_package = "contracts/auth/v1";
+
+service Auth {
+  rpc Register (RegisterRequest) returns (RegisterResponse);
+  rpc Login (LoginRequest) returns (LoginResponse);
+}
+
+message RegisterRequest {
+  string user_id = 1;
+  string auth_main_key = 2;
+  string auth_access_key = 3;
+}
+
+message RegisterResponse {
+  bool is_success = 1;
+}
+
+message LoginRequest {
+  string auth_main_key = 1;
+  string auth_access_key = 2;
+}
+
+message LoginResponse {
+  string user_id = 1;
+}
