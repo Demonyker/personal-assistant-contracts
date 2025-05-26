@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package ai_helper.v1;
+
+option go_package = "contracts/ai_helper/v1";
+
+service AIHelper {
+  rpc AskQuestion (AskQuestionRequest) returns (AskQuestionResponse);
+}
+
+message AskQuestionRequest {
+  string question = 1;
+}
+
+message AskQuestionResponse {
+  string answer = 1;
+}
