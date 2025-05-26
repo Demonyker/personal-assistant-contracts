@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package notifications.v1;
+
+option go_package = "contracts/notifications/v1";
+
+service Notifications {
+  rpc NotifyUser (NotifyUserRequest) returns (NotifyUserResponse);
+}
+
+message NotifyUserRequest {
+  string user_id = 1;
+  string content = 2;
+}
+
+message NotifyUserResponse {
+  bool is_success = 1;
+}
