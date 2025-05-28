@@ -21,28 +21,28 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type NotifyUserRequest struct {
+type TgNotifyRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	ChatId        string                 `protobuf:"bytes,1,opt,name=chat_id,json=chatId,proto3" json:"chat_id,omitempty"`
 	Content       string                 `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *NotifyUserRequest) Reset() {
-	*x = NotifyUserRequest{}
+func (x *TgNotifyRequest) Reset() {
+	*x = TgNotifyRequest{}
 	mi := &file_contracts_notifications_v1_notifications_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *NotifyUserRequest) String() string {
+func (x *TgNotifyRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*NotifyUserRequest) ProtoMessage() {}
+func (*TgNotifyRequest) ProtoMessage() {}
 
-func (x *NotifyUserRequest) ProtoReflect() protoreflect.Message {
+func (x *TgNotifyRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_contracts_notifications_v1_notifications_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -54,46 +54,46 @@ func (x *NotifyUserRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use NotifyUserRequest.ProtoReflect.Descriptor instead.
-func (*NotifyUserRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use TgNotifyRequest.ProtoReflect.Descriptor instead.
+func (*TgNotifyRequest) Descriptor() ([]byte, []int) {
 	return file_contracts_notifications_v1_notifications_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *NotifyUserRequest) GetUserId() string {
+func (x *TgNotifyRequest) GetChatId() string {
 	if x != nil {
-		return x.UserId
+		return x.ChatId
 	}
 	return ""
 }
 
-func (x *NotifyUserRequest) GetContent() string {
+func (x *TgNotifyRequest) GetContent() string {
 	if x != nil {
 		return x.Content
 	}
 	return ""
 }
 
-type NotifyUserResponse struct {
+type TgNotifyResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	IsSuccess     bool                   `protobuf:"varint,1,opt,name=is_success,json=isSuccess,proto3" json:"is_success,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *NotifyUserResponse) Reset() {
-	*x = NotifyUserResponse{}
+func (x *TgNotifyResponse) Reset() {
+	*x = TgNotifyResponse{}
 	mi := &file_contracts_notifications_v1_notifications_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *NotifyUserResponse) String() string {
+func (x *TgNotifyResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*NotifyUserResponse) ProtoMessage() {}
+func (*TgNotifyResponse) ProtoMessage() {}
 
-func (x *NotifyUserResponse) ProtoReflect() protoreflect.Message {
+func (x *TgNotifyResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_contracts_notifications_v1_notifications_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -105,12 +105,12 @@ func (x *NotifyUserResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use NotifyUserResponse.ProtoReflect.Descriptor instead.
-func (*NotifyUserResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use TgNotifyResponse.ProtoReflect.Descriptor instead.
+func (*TgNotifyResponse) Descriptor() ([]byte, []int) {
 	return file_contracts_notifications_v1_notifications_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *NotifyUserResponse) GetIsSuccess() bool {
+func (x *TgNotifyResponse) GetIsSuccess() bool {
 	if x != nil {
 		return x.IsSuccess
 	}
@@ -121,16 +121,15 @@ var File_contracts_notifications_v1_notifications_proto protoreflect.FileDescrip
 
 const file_contracts_notifications_v1_notifications_proto_rawDesc = "" +
 	"\n" +
-	".contracts/notifications/v1/notifications.proto\x12\x10notifications.v1\"F\n" +
-	"\x11NotifyUserRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x18\n" +
-	"\acontent\x18\x02 \x01(\tR\acontent\"3\n" +
-	"\x12NotifyUserResponse\x12\x1d\n" +
+	".contracts/notifications/v1/notifications.proto\x12\x10notifications.v1\"D\n" +
+	"\x0fTgNotifyRequest\x12\x17\n" +
+	"\achat_id\x18\x01 \x01(\tR\x06chatId\x12\x18\n" +
+	"\acontent\x18\x02 \x01(\tR\acontent\"1\n" +
+	"\x10TgNotifyResponse\x12\x1d\n" +
 	"\n" +
-	"is_success\x18\x01 \x01(\bR\tisSuccess2h\n" +
-	"\rNotifications\x12W\n" +
-	"\n" +
-	"NotifyUser\x12#.notifications.v1.NotifyUserRequest\x1a$.notifications.v1.NotifyUserResponseB\x1cZ\x1acontracts/notifications/v1b\x06proto3"
+	"is_success\x18\x01 \x01(\bR\tisSuccess2b\n" +
+	"\rNotifications\x12Q\n" +
+	"\bTgNotify\x12!.notifications.v1.TgNotifyRequest\x1a\".notifications.v1.TgNotifyResponseB\x1cZ\x1acontracts/notifications/v1b\x06proto3"
 
 var (
 	file_contracts_notifications_v1_notifications_proto_rawDescOnce sync.Once
@@ -146,12 +145,12 @@ func file_contracts_notifications_v1_notifications_proto_rawDescGZIP() []byte {
 
 var file_contracts_notifications_v1_notifications_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_contracts_notifications_v1_notifications_proto_goTypes = []any{
-	(*NotifyUserRequest)(nil),  // 0: notifications.v1.NotifyUserRequest
-	(*NotifyUserResponse)(nil), // 1: notifications.v1.NotifyUserResponse
+	(*TgNotifyRequest)(nil),  // 0: notifications.v1.TgNotifyRequest
+	(*TgNotifyResponse)(nil), // 1: notifications.v1.TgNotifyResponse
 }
 var file_contracts_notifications_v1_notifications_proto_depIdxs = []int32{
-	0, // 0: notifications.v1.Notifications.NotifyUser:input_type -> notifications.v1.NotifyUserRequest
-	1, // 1: notifications.v1.Notifications.NotifyUser:output_type -> notifications.v1.NotifyUserResponse
+	0, // 0: notifications.v1.Notifications.TgNotify:input_type -> notifications.v1.TgNotifyRequest
+	1, // 1: notifications.v1.Notifications.TgNotify:output_type -> notifications.v1.TgNotifyResponse
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

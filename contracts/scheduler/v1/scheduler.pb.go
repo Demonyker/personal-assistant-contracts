@@ -83,7 +83,7 @@ func (x *AddTasksRequest) GetTasks() []string {
 
 type AddTasksResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Tasks         []*Task                `protobuf:"bytes,1,rep,name=tasks,proto3" json:"tasks,omitempty"`
+	IsSuccess     bool                   `protobuf:"varint,2,opt,name=is_success,json=isSuccess,proto3" json:"is_success,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -118,11 +118,11 @@ func (*AddTasksResponse) Descriptor() ([]byte, []int) {
 	return file_contracts_scheduler_v1_scheduler_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *AddTasksResponse) GetTasks() []*Task {
+func (x *AddTasksResponse) GetIsSuccess() bool {
 	if x != nil {
-		return x.Tasks
+		return x.IsSuccess
 	}
-	return nil
+	return false
 }
 
 type Task struct {
@@ -281,9 +281,10 @@ const file_contracts_scheduler_v1_scheduler_proto_rawDesc = "" +
 	"\x0fAddTasksRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
 	"\x04date\x18\x02 \x01(\tR\x04date\x12\x14\n" +
-	"\x05tasks\x18\x03 \x03(\tR\x05tasks\"<\n" +
-	"\x10AddTasksResponse\x12(\n" +
-	"\x05tasks\x18\x01 \x03(\v2\x12.scheduler.v1.TaskR\x05tasks\"L\n" +
+	"\x05tasks\x18\x03 \x03(\tR\x05tasks\"1\n" +
+	"\x10AddTasksResponse\x12\x1d\n" +
+	"\n" +
+	"is_success\x18\x02 \x01(\bR\tisSuccess\"L\n" +
 	"\x04Task\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12 \n" +
 	"\vdescription\x18\x02 \x01(\tR\vdescription\x12\x12\n" +
@@ -317,17 +318,16 @@ var file_contracts_scheduler_v1_scheduler_proto_goTypes = []any{
 	(*GetUserTasksResponse)(nil), // 4: scheduler.v1.GetUserTasksResponse
 }
 var file_contracts_scheduler_v1_scheduler_proto_depIdxs = []int32{
-	2, // 0: scheduler.v1.AddTasksResponse.tasks:type_name -> scheduler.v1.Task
-	2, // 1: scheduler.v1.GetUserTasksResponse.tasks:type_name -> scheduler.v1.Task
-	0, // 2: scheduler.v1.Scheduler.AddTasks:input_type -> scheduler.v1.AddTasksRequest
-	3, // 3: scheduler.v1.Scheduler.GetUserTasks:input_type -> scheduler.v1.GetUserTasksRequest
-	1, // 4: scheduler.v1.Scheduler.AddTasks:output_type -> scheduler.v1.AddTasksResponse
-	4, // 5: scheduler.v1.Scheduler.GetUserTasks:output_type -> scheduler.v1.GetUserTasksResponse
-	4, // [4:6] is the sub-list for method output_type
-	2, // [2:4] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	2, // 0: scheduler.v1.GetUserTasksResponse.tasks:type_name -> scheduler.v1.Task
+	0, // 1: scheduler.v1.Scheduler.AddTasks:input_type -> scheduler.v1.AddTasksRequest
+	3, // 2: scheduler.v1.Scheduler.GetUserTasks:input_type -> scheduler.v1.GetUserTasksRequest
+	1, // 3: scheduler.v1.Scheduler.AddTasks:output_type -> scheduler.v1.AddTasksResponse
+	4, // 4: scheduler.v1.Scheduler.GetUserTasks:output_type -> scheduler.v1.GetUserTasksResponse
+	3, // [3:5] is the sub-list for method output_type
+	1, // [1:3] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_contracts_scheduler_v1_scheduler_proto_init() }

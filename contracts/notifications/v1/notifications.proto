@@ -5,14 +5,14 @@ package notifications.v1;
 option go_package = "contracts/notifications/v1";
 
 service Notifications {
-  rpc NotifyUser (NotifyUserRequest) returns (NotifyUserResponse);
+  rpc TgNotify (TgNotifyRequest) returns (TgNotifyResponse);
 }
 
-message NotifyUserRequest {
-  string user_id = 1;
+message TgNotifyRequest {
+  string chat_id = 1;
   string content = 2;
 }
 
-message NotifyUserResponse {
+message TgNotifyResponse {
   bool is_success = 1;
 }

@@ -16,7 +16,7 @@ message AddTasksRequest {
 }
 
 message AddTasksResponse {
-  repeated Task tasks = 1;
+  bool is_success = 2;
 }
 
 message Task {

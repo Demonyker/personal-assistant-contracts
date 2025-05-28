@@ -6,28 +6,35 @@ option go_package = "contracts/users/v1";
 
 service Users {
   rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
-  rpc GetUserById (GetUserByIdRequest) returns (GetUserByIdResponse);
+  rpc GetUserByTgId (GetUserByTgIdRequest) returns (GetUserByTgIdResponse);
 }
 
 message User {
+  // Идентификатор пользователя внутри системы
   string id = 1;
-  string nickname = 2;
-  string dob = 3;
+  // Уникальный идентификатор пользователя в telegram
+  string tg_id = 4;
+
+  string first_name = 5;
+  optional string last_name = 6;
+  string chat_id = 7;
 }
 
 message CreateUserRequest {
-  string nickname = 1;
-  string dob = 2;
+  string platform_id = 3;
+  string first_name = 4;
+  optional string last_name = 5;
+  string chat_id = 6;
 }
 
 message CreateUserResponse {
   User user = 1;
 }
 
-message GetUserByIdRequest {
+message GetUserByTgIdRequest {
   string id = 1;
 }
 
-message GetUserByIdResponse {
+message GetUserByTgIdResponse {
   User user = 1;
 }

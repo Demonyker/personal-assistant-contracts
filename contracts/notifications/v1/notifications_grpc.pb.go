@@ -19,14 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Notifications_NotifyUser_FullMethodName = "/notifications.v1.Notifications/NotifyUser"
+	Notifications_TgNotify_FullMethodName = "/notifications.v1.Notifications/TgNotify"
 )
 
 // NotificationsClient is the client API for Notifications service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type NotificationsClient interface {
-	NotifyUser(ctx context.Context, in *NotifyUserRequest, opts ...grpc.CallOption) (*NotifyUserResponse, error)
+	TgNotify(ctx context.Context, in *TgNotifyRequest, opts ...grpc.CallOption) (*TgNotifyResponse, error)
 }
 
 type notificationsClient struct {
@@ -37,10 +37,10 @@ func NewNotificationsClient(cc grpc.ClientConnInterface) NotificationsClient {
 	return &notificationsClient{cc}
 }
 
-func (c *notificationsClient) NotifyUser(ctx context.Context, in *NotifyUserRequest, opts ...grpc.CallOption) (*NotifyUserResponse, error) {
+func (c *notificationsClient) TgNotify(ctx context.Context, in *TgNotifyRequest, opts ...grpc.CallOption) (*TgNotifyResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(NotifyUserResponse)
-	err := c.cc.Invoke(ctx, Notifications_NotifyUser_FullMethodName, in, out, cOpts...)
+	out := new(TgNotifyResponse)
+	err := c.cc.Invoke(ctx, Notifications_TgNotify_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -51,7 +51,7 @@ func (c *notificationsClient) NotifyUser(ctx context.Context, in *NotifyUserRequ
 // All implementations must embed UnimplementedNotificationsServer
 // for forward compatibility.
 type NotificationsServer interface {
-	NotifyUser(context.Context, *NotifyUserRequest) (*NotifyUserResponse, error)
+	TgNotify(context.Context, *TgNotifyRequest) (*TgNotifyResponse, error)
 	mustEmbedUnimplementedNotificationsServer()
 }
 
@@ -62,8 +62,8 @@ type NotificationsServer interface {
 // pointer dereference when methods are called.
 type UnimplementedNotificationsServer struct{}
 
-func (UnimplementedNotificationsServer) NotifyUser(context.Context, *NotifyUserRequest) (*NotifyUserResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method NotifyUser not implemented")
+func (UnimplementedNotificationsServer) TgNotify(context.Context, *TgNotifyRequest) (*TgNotifyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TgNotify not implemented")
 }
 func (UnimplementedNotificationsServer) mustEmbedUnimplementedNotificationsServer() {}
 func (UnimplementedNotificationsServer) testEmbeddedByValue()                       {}
@@ -86,20 +86,20 @@ func RegisterNotificationsServer(s grpc.ServiceRegistrar, srv NotificationsServe
 	s.RegisterService(&Notifications_ServiceDesc, srv)
 }
 
-func _Notifications_NotifyUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(NotifyUserRequest)
+func _Notifications_TgNotify_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TgNotifyRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(NotificationsServer).NotifyUser(ctx, in)
+		return srv.(NotificationsServer).TgNotify(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Notifications_NotifyUser_FullMethodName,
+		FullMethod: Notifications_TgNotify_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NotificationsServer).NotifyUser(ctx, req.(*NotifyUserRequest))
+		return srv.(NotificationsServer).TgNotify(ctx, req.(*TgNotifyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -112,8 +112,8 @@ var Notifications_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*NotificationsServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "NotifyUser",
-			Handler:    _Notifications_NotifyUser_Handler,
+			MethodName: "TgNotify",
+			Handler:    _Notifications_TgNotify_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
