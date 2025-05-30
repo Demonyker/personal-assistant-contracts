@@ -1,3 +1,4 @@
+
 proto-v1: ### generate source files from proto
 	protoc --go_out=. \
 		--go_opt=paths=source_relative \
