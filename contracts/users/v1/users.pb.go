@@ -28,6 +28,7 @@ type User struct {
 	FirstName     string                 `protobuf:"bytes,5,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
 	LastName      *string                `protobuf:"bytes,6,opt,name=last_name,json=lastName,proto3,oneof" json:"last_name,omitempty"`
 	ChatId        string                 `protobuf:"bytes,7,opt,name=chat_id,json=chatId,proto3" json:"chat_id,omitempty"`
+	IsRegistered  bool                   `protobuf:"varint,8,opt,name=is_registered,json=isRegistered,proto3" json:"is_registered,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -95,6 +96,13 @@ func (x *User) GetChatId() string {
 		return x.ChatId
 	}
 	return ""
+}
+
+func (x *User) GetIsRegistered() bool {
+	if x != nil {
+		return x.IsRegistered
+	}
+	return false
 }
 
 type CreateUserRequest struct {
@@ -389,7 +397,7 @@ var File_contracts_users_v1_users_proto protoreflect.FileDescriptor
 
 const file_contracts_users_v1_users_proto_rawDesc = "" +
 	"\n" +
-	"\x1econtracts/users/v1/users.proto\x12\busers.v1\"\x9f\x01\n" +
+	"\x1econtracts/users/v1/users.proto\x12\busers.v1\"\xc4\x01\n" +
 	"\x04User\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1f\n" +
 	"\vtelegram_id\x18\x04 \x01(\tR\n" +
@@ -397,7 +405,8 @@ const file_contracts_users_v1_users_proto_rawDesc = "" +
 	"\n" +
 	"first_name\x18\x05 \x01(\tR\tfirstName\x12 \n" +
 	"\tlast_name\x18\x06 \x01(\tH\x00R\blastName\x88\x01\x01\x12\x17\n" +
-	"\achat_id\x18\a \x01(\tR\x06chatIdB\f\n" +
+	"\achat_id\x18\a \x01(\tR\x06chatId\x12#\n" +
+	"\ris_registered\x18\b \x01(\bR\fisRegisteredB\f\n" +
 	"\n" +
 	"_last_name\"\x9c\x01\n" +
 	"\x11CreateUserRequest\x12\x1f\n" +
