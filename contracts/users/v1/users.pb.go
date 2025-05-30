@@ -22,14 +22,12 @@ const (
 )
 
 type User struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Идентификатор пользователя внутри системы
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// Уникальный идентификатор пользователя в telegram
-	TgId          string  `protobuf:"bytes,4,opt,name=tg_id,json=tgId,proto3" json:"tg_id,omitempty"`
-	FirstName     string  `protobuf:"bytes,5,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
-	LastName      *string `protobuf:"bytes,6,opt,name=last_name,json=lastName,proto3,oneof" json:"last_name,omitempty"`
-	ChatId        string  `protobuf:"bytes,7,opt,name=chat_id,json=chatId,proto3" json:"chat_id,omitempty"`
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	TelegramId    string                 `protobuf:"bytes,4,opt,name=telegram_id,json=telegramId,proto3" json:"telegram_id,omitempty"`
+	FirstName     string                 `protobuf:"bytes,5,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
+	LastName      *string                `protobuf:"bytes,6,opt,name=last_name,json=lastName,proto3,oneof" json:"last_name,omitempty"`
+	ChatId        string                 `protobuf:"bytes,7,opt,name=chat_id,json=chatId,proto3" json:"chat_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -71,9 +69,9 @@ func (x *User) GetId() string {
 	return ""
 }
 
-func (x *User) GetTgId() string {
+func (x *User) GetTelegramId() string {
 	if x != nil {
-		return x.TgId
+		return x.TelegramId
 	}
 	return ""
 }
@@ -101,7 +99,7 @@ func (x *User) GetChatId() string {
 
 type CreateUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	PlatformId    string                 `protobuf:"bytes,3,opt,name=platform_id,json=platformId,proto3" json:"platform_id,omitempty"`
+	TelegramId    string                 `protobuf:"bytes,3,opt,name=telegram_id,json=telegramId,proto3" json:"telegram_id,omitempty"`
 	FirstName     string                 `protobuf:"bytes,4,opt,name=first_name,json=firstName,proto3" json:"first_name,omitempty"`
 	LastName      *string                `protobuf:"bytes,5,opt,name=last_name,json=lastName,proto3,oneof" json:"last_name,omitempty"`
 	ChatId        string                 `protobuf:"bytes,6,opt,name=chat_id,json=chatId,proto3" json:"chat_id,omitempty"`
@@ -139,9 +137,9 @@ func (*CreateUserRequest) Descriptor() ([]byte, []int) {
 	return file_contracts_users_v1_users_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *CreateUserRequest) GetPlatformId() string {
+func (x *CreateUserRequest) GetTelegramId() string {
 	if x != nil {
-		return x.PlatformId
+		return x.TelegramId
 	}
 	return ""
 }
@@ -299,14 +297,103 @@ func (x *GetUserByTgIdResponse) GetUser() *User {
 	return nil
 }
 
+type GetUserByIdRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetUserByIdRequest) Reset() {
+	*x = GetUserByIdRequest{}
+	mi := &file_contracts_users_v1_users_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetUserByIdRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUserByIdRequest) ProtoMessage() {}
+
+func (x *GetUserByIdRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_contracts_users_v1_users_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUserByIdRequest.ProtoReflect.Descriptor instead.
+func (*GetUserByIdRequest) Descriptor() ([]byte, []int) {
+	return file_contracts_users_v1_users_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *GetUserByIdRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type GetUserByIdResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	User          *User                  `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetUserByIdResponse) Reset() {
+	*x = GetUserByIdResponse{}
+	mi := &file_contracts_users_v1_users_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetUserByIdResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUserByIdResponse) ProtoMessage() {}
+
+func (x *GetUserByIdResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_contracts_users_v1_users_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUserByIdResponse.ProtoReflect.Descriptor instead.
+func (*GetUserByIdResponse) Descriptor() ([]byte, []int) {
+	return file_contracts_users_v1_users_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *GetUserByIdResponse) GetUser() *User {
+	if x != nil {
+		return x.User
+	}
+	return nil
+}
+
 var File_contracts_users_v1_users_proto protoreflect.FileDescriptor
 
 const file_contracts_users_v1_users_proto_rawDesc = "" +
 	"\n" +
-	"\x1econtracts/users/v1/users.proto\x12\busers.v1\"\x93\x01\n" +
+	"\x1econtracts/users/v1/users.proto\x12\busers.v1\"\x9f\x01\n" +
 	"\x04User\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x13\n" +
-	"\x05tg_id\x18\x04 \x01(\tR\x04tgId\x12\x1d\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1f\n" +
+	"\vtelegram_id\x18\x04 \x01(\tR\n" +
+	"telegramId\x12\x1d\n" +
 	"\n" +
 	"first_name\x18\x05 \x01(\tR\tfirstName\x12 \n" +
 	"\tlast_name\x18\x06 \x01(\tH\x00R\blastName\x88\x01\x01\x12\x17\n" +
@@ -314,8 +401,8 @@ const file_contracts_users_v1_users_proto_rawDesc = "" +
 	"\n" +
 	"_last_name\"\x9c\x01\n" +
 	"\x11CreateUserRequest\x12\x1f\n" +
-	"\vplatform_id\x18\x03 \x01(\tR\n" +
-	"platformId\x12\x1d\n" +
+	"\vtelegram_id\x18\x03 \x01(\tR\n" +
+	"telegramId\x12\x1d\n" +
 	"\n" +
 	"first_name\x18\x04 \x01(\tR\tfirstName\x12 \n" +
 	"\tlast_name\x18\x05 \x01(\tH\x00R\blastName\x88\x01\x01\x12\x17\n" +
@@ -327,11 +414,16 @@ const file_contracts_users_v1_users_proto_rawDesc = "" +
 	"\x14GetUserByTgIdRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\";\n" +
 	"\x15GetUserByTgIdResponse\x12\"\n" +
-	"\x04user\x18\x01 \x01(\v2\x0e.users.v1.UserR\x04user2\xa2\x01\n" +
+	"\x04user\x18\x01 \x01(\v2\x0e.users.v1.UserR\x04user\"$\n" +
+	"\x12GetUserByIdRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"9\n" +
+	"\x13GetUserByIdResponse\x12\"\n" +
+	"\x04user\x18\x01 \x01(\v2\x0e.users.v1.UserR\x04user2\xee\x01\n" +
 	"\x05Users\x12G\n" +
 	"\n" +
 	"CreateUser\x12\x1b.users.v1.CreateUserRequest\x1a\x1c.users.v1.CreateUserResponse\x12P\n" +
-	"\rGetUserByTgId\x12\x1e.users.v1.GetUserByTgIdRequest\x1a\x1f.users.v1.GetUserByTgIdResponseB\x14Z\x12contracts/users/v1b\x06proto3"
+	"\rGetUserByTgId\x12\x1e.users.v1.GetUserByTgIdRequest\x1a\x1f.users.v1.GetUserByTgIdResponse\x12J\n" +
+	"\vGetUserById\x12\x1c.users.v1.GetUserByIdRequest\x1a\x1d.users.v1.GetUserByIdResponseB\x14Z\x12contracts/users/v1b\x06proto3"
 
 var (
 	file_contracts_users_v1_users_proto_rawDescOnce sync.Once
@@ -345,26 +437,31 @@ func file_contracts_users_v1_users_proto_rawDescGZIP() []byte {
 	return file_contracts_users_v1_users_proto_rawDescData
 }
 
-var file_contracts_users_v1_users_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_contracts_users_v1_users_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_contracts_users_v1_users_proto_goTypes = []any{
 	(*User)(nil),                  // 0: users.v1.User
 	(*CreateUserRequest)(nil),     // 1: users.v1.CreateUserRequest
 	(*CreateUserResponse)(nil),    // 2: users.v1.CreateUserResponse
 	(*GetUserByTgIdRequest)(nil),  // 3: users.v1.GetUserByTgIdRequest
 	(*GetUserByTgIdResponse)(nil), // 4: users.v1.GetUserByTgIdResponse
+	(*GetUserByIdRequest)(nil),    // 5: users.v1.GetUserByIdRequest
+	(*GetUserByIdResponse)(nil),   // 6: users.v1.GetUserByIdResponse
 }
 var file_contracts_users_v1_users_proto_depIdxs = []int32{
 	0, // 0: users.v1.CreateUserResponse.user:type_name -> users.v1.User
 	0, // 1: users.v1.GetUserByTgIdResponse.user:type_name -> users.v1.User
-	1, // 2: users.v1.Users.CreateUser:input_type -> users.v1.CreateUserRequest
-	3, // 3: users.v1.Users.GetUserByTgId:input_type -> users.v1.GetUserByTgIdRequest
-	2, // 4: users.v1.Users.CreateUser:output_type -> users.v1.CreateUserResponse
-	4, // 5: users.v1.Users.GetUserByTgId:output_type -> users.v1.GetUserByTgIdResponse
-	4, // [4:6] is the sub-list for method output_type
-	2, // [2:4] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	0, // 2: users.v1.GetUserByIdResponse.user:type_name -> users.v1.User
+	1, // 3: users.v1.Users.CreateUser:input_type -> users.v1.CreateUserRequest
+	3, // 4: users.v1.Users.GetUserByTgId:input_type -> users.v1.GetUserByTgIdRequest
+	5, // 5: users.v1.Users.GetUserById:input_type -> users.v1.GetUserByIdRequest
+	2, // 6: users.v1.Users.CreateUser:output_type -> users.v1.CreateUserResponse
+	4, // 7: users.v1.Users.GetUserByTgId:output_type -> users.v1.GetUserByTgIdResponse
+	6, // 8: users.v1.Users.GetUserById:output_type -> users.v1.GetUserByIdResponse
+	6, // [6:9] is the sub-list for method output_type
+	3, // [3:6] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_contracts_users_v1_users_proto_init() }
@@ -380,7 +477,7 @@ func file_contracts_users_v1_users_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_contracts_users_v1_users_proto_rawDesc), len(file_contracts_users_v1_users_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

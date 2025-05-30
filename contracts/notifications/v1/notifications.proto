@@ -5,14 +5,14 @@ package notifications.v1;
 option go_package = "contracts/notifications/v1";
 
 service Notifications {
-  rpc TgNotify (TgNotifyRequest) returns (TgNotifyResponse);
+  rpc TelegramNotify (TelegramNotifyRequest) returns (TelegramNotifyResponse);
 }
 
-message TgNotifyRequest {
+message TelegramNotifyRequest {
   string chat_id = 1;
   string content = 2;
 }
 
-message TgNotifyResponse {
+message TelegramNotifyResponse {
   bool is_success = 1;
 }

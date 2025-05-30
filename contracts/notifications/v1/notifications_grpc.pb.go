@@ -19,14 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Notifications_TgNotify_FullMethodName = "/notifications.v1.Notifications/TgNotify"
+	Notifications_TelegramNotify_FullMethodName = "/notifications.v1.Notifications/TelegramNotify"
 )
 
 // NotificationsClient is the client API for Notifications service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type NotificationsClient interface {
-	TgNotify(ctx context.Context, in *TgNotifyRequest, opts ...grpc.CallOption) (*TgNotifyResponse, error)
+	TelegramNotify(ctx context.Context, in *TelegramNotifyRequest, opts ...grpc.CallOption) (*TelegramNotifyResponse, error)
 }
 
 type notificationsClient struct {
@@ -37,10 +37,10 @@ func NewNotificationsClient(cc grpc.ClientConnInterface) NotificationsClient {
 	return &notificationsClient{cc}
 }
 
-func (c *notificationsClient) TgNotify(ctx context.Context, in *TgNotifyRequest, opts ...grpc.CallOption) (*TgNotifyResponse, error) {
+func (c *notificationsClient) TelegramNotify(ctx context.Context, in *TelegramNotifyRequest, opts ...grpc.CallOption) (*TelegramNotifyResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(TgNotifyResponse)
-	err := c.cc.Invoke(ctx, Notifications_TgNotify_FullMethodName, in, out, cOpts...)
+	out := new(TelegramNotifyResponse)
+	err := c.cc.Invoke(ctx, Notifications_TelegramNotify_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -51,7 +51,7 @@ func (c *notificationsClient) TgNotify(ctx context.Context, in *TgNotifyRequest,
 // All implementations must embed UnimplementedNotificationsServer
 // for forward compatibility.
 type NotificationsServer interface {
-	TgNotify(context.Context, *TgNotifyRequest) (*TgNotifyResponse, error)
+	TelegramNotify(context.Context, *TelegramNotifyRequest) (*TelegramNotifyResponse, error)
 	mustEmbedUnimplementedNotificationsServer()
 }
 
@@ -62,8 +62,8 @@ type NotificationsServer interface {
 // pointer dereference when methods are called.
 type UnimplementedNotificationsServer struct{}
 
-func (UnimplementedNotificationsServer) TgNotify(context.Context, *TgNotifyRequest) (*TgNotifyResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TgNotify not implemented")
+func (UnimplementedNotificationsServer) TelegramNotify(context.Context, *TelegramNotifyRequest) (*TelegramNotifyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TelegramNotify not implemented")
 }
 func (UnimplementedNotificationsServer) mustEmbedUnimplementedNotificationsServer() {}
 func (UnimplementedNotificationsServer) testEmbeddedByValue()                       {}
@@ -86,20 +86,20 @@ func RegisterNotificationsServer(s grpc.ServiceRegistrar, srv NotificationsServe
 	s.RegisterService(&Notifications_ServiceDesc, srv)
 }
 
-func _Notifications_TgNotify_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TgNotifyRequest)
+func _Notifications_TelegramNotify_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TelegramNotifyRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(NotificationsServer).TgNotify(ctx, in)
+		return srv.(NotificationsServer).TelegramNotify(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Notifications_TgNotify_FullMethodName,
+		FullMethod: Notifications_TelegramNotify_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NotificationsServer).TgNotify(ctx, req.(*TgNotifyRequest))
+		return srv.(NotificationsServer).TelegramNotify(ctx, req.(*TelegramNotifyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -112,8 +112,8 @@ var Notifications_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*NotificationsServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "TgNotify",
-			Handler:    _Notifications_TgNotify_Handler,
+			MethodName: "TelegramNotify",
+			Handler:    _Notifications_TelegramNotify_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

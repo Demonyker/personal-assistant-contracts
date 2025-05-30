@@ -21,7 +21,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type TgNotifyRequest struct {
+type TelegramNotifyRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ChatId        string                 `protobuf:"bytes,1,opt,name=chat_id,json=chatId,proto3" json:"chat_id,omitempty"`
 	Content       string                 `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
@@ -29,20 +29,20 @@ type TgNotifyRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *TgNotifyRequest) Reset() {
-	*x = TgNotifyRequest{}
+func (x *TelegramNotifyRequest) Reset() {
+	*x = TelegramNotifyRequest{}
 	mi := &file_contracts_notifications_v1_notifications_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *TgNotifyRequest) String() string {
+func (x *TelegramNotifyRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TgNotifyRequest) ProtoMessage() {}
+func (*TelegramNotifyRequest) ProtoMessage() {}
 
-func (x *TgNotifyRequest) ProtoReflect() protoreflect.Message {
+func (x *TelegramNotifyRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_contracts_notifications_v1_notifications_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -54,46 +54,46 @@ func (x *TgNotifyRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use TgNotifyRequest.ProtoReflect.Descriptor instead.
-func (*TgNotifyRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use TelegramNotifyRequest.ProtoReflect.Descriptor instead.
+func (*TelegramNotifyRequest) Descriptor() ([]byte, []int) {
 	return file_contracts_notifications_v1_notifications_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *TgNotifyRequest) GetChatId() string {
+func (x *TelegramNotifyRequest) GetChatId() string {
 	if x != nil {
 		return x.ChatId
 	}
 	return ""
 }
 
-func (x *TgNotifyRequest) GetContent() string {
+func (x *TelegramNotifyRequest) GetContent() string {
 	if x != nil {
 		return x.Content
 	}
 	return ""
 }
 
-type TgNotifyResponse struct {
+type TelegramNotifyResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	IsSuccess     bool                   `protobuf:"varint,1,opt,name=is_success,json=isSuccess,proto3" json:"is_success,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *TgNotifyResponse) Reset() {
-	*x = TgNotifyResponse{}
+func (x *TelegramNotifyResponse) Reset() {
+	*x = TelegramNotifyResponse{}
 	mi := &file_contracts_notifications_v1_notifications_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *TgNotifyResponse) String() string {
+func (x *TelegramNotifyResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*TgNotifyResponse) ProtoMessage() {}
+func (*TelegramNotifyResponse) ProtoMessage() {}
 
-func (x *TgNotifyResponse) ProtoReflect() protoreflect.Message {
+func (x *TelegramNotifyResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_contracts_notifications_v1_notifications_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -105,12 +105,12 @@ func (x *TgNotifyResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use TgNotifyResponse.ProtoReflect.Descriptor instead.
-func (*TgNotifyResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use TelegramNotifyResponse.ProtoReflect.Descriptor instead.
+func (*TelegramNotifyResponse) Descriptor() ([]byte, []int) {
 	return file_contracts_notifications_v1_notifications_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *TgNotifyResponse) GetIsSuccess() bool {
+func (x *TelegramNotifyResponse) GetIsSuccess() bool {
 	if x != nil {
 		return x.IsSuccess
 	}
@@ -121,15 +121,15 @@ var File_contracts_notifications_v1_notifications_proto protoreflect.FileDescrip
 
 const file_contracts_notifications_v1_notifications_proto_rawDesc = "" +
 	"\n" +
-	".contracts/notifications/v1/notifications.proto\x12\x10notifications.v1\"D\n" +
-	"\x0fTgNotifyRequest\x12\x17\n" +
+	".contracts/notifications/v1/notifications.proto\x12\x10notifications.v1\"J\n" +
+	"\x15TelegramNotifyRequest\x12\x17\n" +
 	"\achat_id\x18\x01 \x01(\tR\x06chatId\x12\x18\n" +
-	"\acontent\x18\x02 \x01(\tR\acontent\"1\n" +
-	"\x10TgNotifyResponse\x12\x1d\n" +
+	"\acontent\x18\x02 \x01(\tR\acontent\"7\n" +
+	"\x16TelegramNotifyResponse\x12\x1d\n" +
 	"\n" +
-	"is_success\x18\x01 \x01(\bR\tisSuccess2b\n" +
-	"\rNotifications\x12Q\n" +
-	"\bTgNotify\x12!.notifications.v1.TgNotifyRequest\x1a\".notifications.v1.TgNotifyResponseB\x1cZ\x1acontracts/notifications/v1b\x06proto3"
+	"is_success\x18\x01 \x01(\bR\tisSuccess2t\n" +
+	"\rNotifications\x12c\n" +
+	"\x0eTelegramNotify\x12'.notifications.v1.TelegramNotifyRequest\x1a(.notifications.v1.TelegramNotifyResponseB\x1cZ\x1acontracts/notifications/v1b\x06proto3"
 
 var (
 	file_contracts_notifications_v1_notifications_proto_rawDescOnce sync.Once
@@ -145,12 +145,12 @@ func file_contracts_notifications_v1_notifications_proto_rawDescGZIP() []byte {
 
 var file_contracts_notifications_v1_notifications_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_contracts_notifications_v1_notifications_proto_goTypes = []any{
-	(*TgNotifyRequest)(nil),  // 0: notifications.v1.TgNotifyRequest
-	(*TgNotifyResponse)(nil), // 1: notifications.v1.TgNotifyResponse
+	(*TelegramNotifyRequest)(nil),  // 0: notifications.v1.TelegramNotifyRequest
+	(*TelegramNotifyResponse)(nil), // 1: notifications.v1.TelegramNotifyResponse
 }
 var file_contracts_notifications_v1_notifications_proto_depIdxs = []int32{
-	0, // 0: notifications.v1.Notifications.TgNotify:input_type -> notifications.v1.TgNotifyRequest
-	1, // 1: notifications.v1.Notifications.TgNotify:output_type -> notifications.v1.TgNotifyResponse
+	0, // 0: notifications.v1.Notifications.TelegramNotify:input_type -> notifications.v1.TelegramNotifyRequest
+	1, // 1: notifications.v1.Notifications.TelegramNotify:output_type -> notifications.v1.TelegramNotifyResponse
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
