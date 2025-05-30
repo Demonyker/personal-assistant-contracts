@@ -173,27 +173,27 @@ func (x *CreateUserRequest) GetChatId() string {
 	return ""
 }
 
-type CreateUserResponse struct {
+type UserResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	User          *User                  `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CreateUserResponse) Reset() {
-	*x = CreateUserResponse{}
+func (x *UserResponse) Reset() {
+	*x = UserResponse{}
 	mi := &file_contracts_users_v1_users_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CreateUserResponse) String() string {
+func (x *UserResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateUserResponse) ProtoMessage() {}
+func (*UserResponse) ProtoMessage() {}
 
-func (x *CreateUserResponse) ProtoReflect() protoreflect.Message {
+func (x *UserResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_contracts_users_v1_users_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -205,12 +205,12 @@ func (x *CreateUserResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateUserResponse.ProtoReflect.Descriptor instead.
-func (*CreateUserResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use UserResponse.ProtoReflect.Descriptor instead.
+func (*UserResponse) Descriptor() ([]byte, []int) {
 	return file_contracts_users_v1_users_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *CreateUserResponse) GetUser() *User {
+func (x *UserResponse) GetUser() *User {
 	if x != nil {
 		return x.User
 	}
@@ -219,7 +219,7 @@ func (x *CreateUserResponse) GetUser() *User {
 
 type GetUserByTgIdRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	TelegramId    string                 `protobuf:"bytes,1,opt,name=telegram_id,json=telegramId,proto3" json:"telegram_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -254,55 +254,11 @@ func (*GetUserByTgIdRequest) Descriptor() ([]byte, []int) {
 	return file_contracts_users_v1_users_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *GetUserByTgIdRequest) GetId() string {
+func (x *GetUserByTgIdRequest) GetTelegramId() string {
 	if x != nil {
-		return x.Id
+		return x.TelegramId
 	}
 	return ""
-}
-
-type GetUserByTgIdResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	User          *User                  `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetUserByTgIdResponse) Reset() {
-	*x = GetUserByTgIdResponse{}
-	mi := &file_contracts_users_v1_users_proto_msgTypes[4]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetUserByTgIdResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetUserByTgIdResponse) ProtoMessage() {}
-
-func (x *GetUserByTgIdResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_contracts_users_v1_users_proto_msgTypes[4]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetUserByTgIdResponse.ProtoReflect.Descriptor instead.
-func (*GetUserByTgIdResponse) Descriptor() ([]byte, []int) {
-	return file_contracts_users_v1_users_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *GetUserByTgIdResponse) GetUser() *User {
-	if x != nil {
-		return x.User
-	}
-	return nil
 }
 
 type GetUserByIdRequest struct {
@@ -314,7 +270,7 @@ type GetUserByIdRequest struct {
 
 func (x *GetUserByIdRequest) Reset() {
 	*x = GetUserByIdRequest{}
-	mi := &file_contracts_users_v1_users_proto_msgTypes[5]
+	mi := &file_contracts_users_v1_users_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -326,7 +282,7 @@ func (x *GetUserByIdRequest) String() string {
 func (*GetUserByIdRequest) ProtoMessage() {}
 
 func (x *GetUserByIdRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_contracts_users_v1_users_proto_msgTypes[5]
+	mi := &file_contracts_users_v1_users_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -339,7 +295,7 @@ func (x *GetUserByIdRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserByIdRequest.ProtoReflect.Descriptor instead.
 func (*GetUserByIdRequest) Descriptor() ([]byte, []int) {
-	return file_contracts_users_v1_users_proto_rawDescGZIP(), []int{5}
+	return file_contracts_users_v1_users_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *GetUserByIdRequest) GetId() string {
@@ -347,50 +303,6 @@ func (x *GetUserByIdRequest) GetId() string {
 		return x.Id
 	}
 	return ""
-}
-
-type GetUserByIdResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	User          *User                  `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetUserByIdResponse) Reset() {
-	*x = GetUserByIdResponse{}
-	mi := &file_contracts_users_v1_users_proto_msgTypes[6]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetUserByIdResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetUserByIdResponse) ProtoMessage() {}
-
-func (x *GetUserByIdResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_contracts_users_v1_users_proto_msgTypes[6]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetUserByIdResponse.ProtoReflect.Descriptor instead.
-func (*GetUserByIdResponse) Descriptor() ([]byte, []int) {
-	return file_contracts_users_v1_users_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *GetUserByIdResponse) GetUser() *User {
-	if x != nil {
-		return x.User
-	}
-	return nil
 }
 
 var File_contracts_users_v1_users_proto protoreflect.FileDescriptor
@@ -417,22 +329,19 @@ const file_contracts_users_v1_users_proto_rawDesc = "" +
 	"\tlast_name\x18\x05 \x01(\tH\x00R\blastName\x88\x01\x01\x12\x17\n" +
 	"\achat_id\x18\x06 \x01(\tR\x06chatIdB\f\n" +
 	"\n" +
-	"_last_name\"8\n" +
-	"\x12CreateUserResponse\x12\"\n" +
-	"\x04user\x18\x01 \x01(\v2\x0e.users.v1.UserR\x04user\"&\n" +
-	"\x14GetUserByTgIdRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\";\n" +
-	"\x15GetUserByTgIdResponse\x12\"\n" +
-	"\x04user\x18\x01 \x01(\v2\x0e.users.v1.UserR\x04user\"$\n" +
+	"_last_name\"2\n" +
+	"\fUserResponse\x12\"\n" +
+	"\x04user\x18\x01 \x01(\v2\x0e.users.v1.UserR\x04user\"7\n" +
+	"\x14GetUserByTgIdRequest\x12\x1f\n" +
+	"\vtelegram_id\x18\x01 \x01(\tR\n" +
+	"telegramId\"$\n" +
 	"\x12GetUserByIdRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"9\n" +
-	"\x13GetUserByIdResponse\x12\"\n" +
-	"\x04user\x18\x01 \x01(\v2\x0e.users.v1.UserR\x04user2\xee\x01\n" +
-	"\x05Users\x12G\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id2\xd8\x01\n" +
+	"\x05Users\x12A\n" +
 	"\n" +
-	"CreateUser\x12\x1b.users.v1.CreateUserRequest\x1a\x1c.users.v1.CreateUserResponse\x12P\n" +
-	"\rGetUserByTgId\x12\x1e.users.v1.GetUserByTgIdRequest\x1a\x1f.users.v1.GetUserByTgIdResponse\x12J\n" +
-	"\vGetUserById\x12\x1c.users.v1.GetUserByIdRequest\x1a\x1d.users.v1.GetUserByIdResponseB\x14Z\x12contracts/users/v1b\x06proto3"
+	"CreateUser\x12\x1b.users.v1.CreateUserRequest\x1a\x16.users.v1.UserResponse\x12G\n" +
+	"\rGetUserByTgId\x12\x1e.users.v1.GetUserByTgIdRequest\x1a\x16.users.v1.UserResponse\x12C\n" +
+	"\vGetUserById\x12\x1c.users.v1.GetUserByIdRequest\x1a\x16.users.v1.UserResponseB\x14Z\x12contracts/users/v1b\x06proto3"
 
 var (
 	file_contracts_users_v1_users_proto_rawDescOnce sync.Once
@@ -446,31 +355,27 @@ func file_contracts_users_v1_users_proto_rawDescGZIP() []byte {
 	return file_contracts_users_v1_users_proto_rawDescData
 }
 
-var file_contracts_users_v1_users_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_contracts_users_v1_users_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_contracts_users_v1_users_proto_goTypes = []any{
-	(*User)(nil),                  // 0: users.v1.User
-	(*CreateUserRequest)(nil),     // 1: users.v1.CreateUserRequest
-	(*CreateUserResponse)(nil),    // 2: users.v1.CreateUserResponse
-	(*GetUserByTgIdRequest)(nil),  // 3: users.v1.GetUserByTgIdRequest
-	(*GetUserByTgIdResponse)(nil), // 4: users.v1.GetUserByTgIdResponse
-	(*GetUserByIdRequest)(nil),    // 5: users.v1.GetUserByIdRequest
-	(*GetUserByIdResponse)(nil),   // 6: users.v1.GetUserByIdResponse
+	(*User)(nil),                 // 0: users.v1.User
+	(*CreateUserRequest)(nil),    // 1: users.v1.CreateUserRequest
+	(*UserResponse)(nil),         // 2: users.v1.UserResponse
+	(*GetUserByTgIdRequest)(nil), // 3: users.v1.GetUserByTgIdRequest
+	(*GetUserByIdRequest)(nil),   // 4: users.v1.GetUserByIdRequest
 }
 var file_contracts_users_v1_users_proto_depIdxs = []int32{
-	0, // 0: users.v1.CreateUserResponse.user:type_name -> users.v1.User
-	0, // 1: users.v1.GetUserByTgIdResponse.user:type_name -> users.v1.User
-	0, // 2: users.v1.GetUserByIdResponse.user:type_name -> users.v1.User
-	1, // 3: users.v1.Users.CreateUser:input_type -> users.v1.CreateUserRequest
-	3, // 4: users.v1.Users.GetUserByTgId:input_type -> users.v1.GetUserByTgIdRequest
-	5, // 5: users.v1.Users.GetUserById:input_type -> users.v1.GetUserByIdRequest
-	2, // 6: users.v1.Users.CreateUser:output_type -> users.v1.CreateUserResponse
-	4, // 7: users.v1.Users.GetUserByTgId:output_type -> users.v1.GetUserByTgIdResponse
-	6, // 8: users.v1.Users.GetUserById:output_type -> users.v1.GetUserByIdResponse
-	6, // [6:9] is the sub-list for method output_type
-	3, // [3:6] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	0, // 0: users.v1.UserResponse.user:type_name -> users.v1.User
+	1, // 1: users.v1.Users.CreateUser:input_type -> users.v1.CreateUserRequest
+	3, // 2: users.v1.Users.GetUserByTgId:input_type -> users.v1.GetUserByTgIdRequest
+	4, // 3: users.v1.Users.GetUserById:input_type -> users.v1.GetUserByIdRequest
+	2, // 4: users.v1.Users.CreateUser:output_type -> users.v1.UserResponse
+	2, // 5: users.v1.Users.GetUserByTgId:output_type -> users.v1.UserResponse
+	2, // 6: users.v1.Users.GetUserById:output_type -> users.v1.UserResponse
+	4, // [4:7] is the sub-list for method output_type
+	1, // [1:4] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_contracts_users_v1_users_proto_init() }
@@ -486,7 +391,7 @@ func file_contracts_users_v1_users_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_contracts_users_v1_users_proto_rawDesc), len(file_contracts_users_v1_users_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   7,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

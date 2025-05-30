@@ -28,9 +28,9 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UsersClient interface {
-	CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*CreateUserResponse, error)
-	GetUserByTgId(ctx context.Context, in *GetUserByTgIdRequest, opts ...grpc.CallOption) (*GetUserByTgIdResponse, error)
-	GetUserById(ctx context.Context, in *GetUserByIdRequest, opts ...grpc.CallOption) (*GetUserByIdResponse, error)
+	CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*UserResponse, error)
+	GetUserByTgId(ctx context.Context, in *GetUserByTgIdRequest, opts ...grpc.CallOption) (*UserResponse, error)
+	GetUserById(ctx context.Context, in *GetUserByIdRequest, opts ...grpc.CallOption) (*UserResponse, error)
 }
 
 type usersClient struct {
@@ -41,9 +41,9 @@ func NewUsersClient(cc grpc.ClientConnInterface) UsersClient {
 	return &usersClient{cc}
 }
 
-func (c *usersClient) CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*CreateUserResponse, error) {
+func (c *usersClient) CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*UserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateUserResponse)
+	out := new(UserResponse)
 	err := c.cc.Invoke(ctx, Users_CreateUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -51,9 +51,9 @@ func (c *usersClient) CreateUser(ctx context.Context, in *CreateUserRequest, opt
 	return out, nil
 }
 
-func (c *usersClient) GetUserByTgId(ctx context.Context, in *GetUserByTgIdRequest, opts ...grpc.CallOption) (*GetUserByTgIdResponse, error) {
+func (c *usersClient) GetUserByTgId(ctx context.Context, in *GetUserByTgIdRequest, opts ...grpc.CallOption) (*UserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetUserByTgIdResponse)
+	out := new(UserResponse)
 	err := c.cc.Invoke(ctx, Users_GetUserByTgId_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -61,9 +61,9 @@ func (c *usersClient) GetUserByTgId(ctx context.Context, in *GetUserByTgIdReques
 	return out, nil
 }
 
-func (c *usersClient) GetUserById(ctx context.Context, in *GetUserByIdRequest, opts ...grpc.CallOption) (*GetUserByIdResponse, error) {
+func (c *usersClient) GetUserById(ctx context.Context, in *GetUserByIdRequest, opts ...grpc.CallOption) (*UserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetUserByIdResponse)
+	out := new(UserResponse)
 	err := c.cc.Invoke(ctx, Users_GetUserById_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -75,9 +75,9 @@ func (c *usersClient) GetUserById(ctx context.Context, in *GetUserByIdRequest, o
 // All implementations must embed UnimplementedUsersServer
 // for forward compatibility.
 type UsersServer interface {
-	CreateUser(context.Context, *CreateUserRequest) (*CreateUserResponse, error)
-	GetUserByTgId(context.Context, *GetUserByTgIdRequest) (*GetUserByTgIdResponse, error)
-	GetUserById(context.Context, *GetUserByIdRequest) (*GetUserByIdResponse, error)
+	CreateUser(context.Context, *CreateUserRequest) (*UserResponse, error)
+	GetUserByTgId(context.Context, *GetUserByTgIdRequest) (*UserResponse, error)
+	GetUserById(context.Context, *GetUserByIdRequest) (*UserResponse, error)
 	mustEmbedUnimplementedUsersServer()
 }
 
@@ -88,13 +88,13 @@ type UsersServer interface {
 // pointer dereference when methods are called.
 type UnimplementedUsersServer struct{}
 
-func (UnimplementedUsersServer) CreateUser(context.Context, *CreateUserRequest) (*CreateUserResponse, error) {
+func (UnimplementedUsersServer) CreateUser(context.Context, *CreateUserRequest) (*UserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateUser not implemented")
 }
-func (UnimplementedUsersServer) GetUserByTgId(context.Context, *GetUserByTgIdRequest) (*GetUserByTgIdResponse, error) {
+func (UnimplementedUsersServer) GetUserByTgId(context.Context, *GetUserByTgIdRequest) (*UserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserByTgId not implemented")
 }
-func (UnimplementedUsersServer) GetUserById(context.Context, *GetUserByIdRequest) (*GetUserByIdResponse, error) {
+func (UnimplementedUsersServer) GetUserById(context.Context, *GetUserByIdRequest) (*UserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserById not implemented")
 }
 func (UnimplementedUsersServer) mustEmbedUnimplementedUsersServer() {}
