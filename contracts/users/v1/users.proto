@@ -5,9 +5,9 @@ package users.v1;
 option go_package = "contracts/users/v1";
 
 service Users {
-  rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
-  rpc GetUserByTgId (GetUserByTgIdRequest) returns (GetUserByTgIdResponse);
-  rpc GetUserById (GetUserByIdRequest) returns (GetUserByIdResponse);
+  rpc CreateUser (CreateUserRequest) returns (UserResponse);
+  rpc GetUserByTgId (GetUserByTgIdRequest) returns (UserResponse);
+  rpc GetUserById (GetUserByIdRequest) returns (UserResponse);
 }
 
 message User {
@@ -26,22 +26,14 @@ message CreateUserRequest {
   string chat_id = 6;
 }
 
-message CreateUserResponse {
+message UserResponse {
   User user = 1;
 }
 
 message GetUserByTgIdRequest {
-  string id = 1;
-}
-
-message GetUserByTgIdResponse {
-  User user = 1;
+  string telegram_id = 1;
 }
 
 message GetUserByIdRequest {
   string id = 1;
-}
-
-message GetUserByIdResponse {
-  User user = 1;
 }
