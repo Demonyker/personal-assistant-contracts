@@ -75,7 +75,7 @@ func (x *CredentialsRequest) GetPassword() string {
 
 type IsSuccessResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	IsSuccess     string                 `protobuf:"bytes,1,opt,name=is_success,json=isSuccess,proto3" json:"is_success,omitempty"`
+	IsSuccess     bool                   `protobuf:"varint,1,opt,name=is_success,json=isSuccess,proto3" json:"is_success,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -110,11 +110,11 @@ func (*IsSuccessResponse) Descriptor() ([]byte, []int) {
 	return file_contracts_auth_v1_auth_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *IsSuccessResponse) GetIsSuccess() string {
+func (x *IsSuccessResponse) GetIsSuccess() bool {
 	if x != nil {
 		return x.IsSuccess
 	}
-	return ""
+	return false
 }
 
 type RefreshTokensRequest struct {
@@ -268,7 +268,7 @@ const file_contracts_auth_v1_auth_proto_rawDesc = "" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\"2\n" +
 	"\x11IsSuccessResponse\x12\x1d\n" +
 	"\n" +
-	"is_success\x18\x01 \x01(\tR\tisSuccess\";\n" +
+	"is_success\x18\x01 \x01(\bR\tisSuccess\";\n" +
 	"\x14RefreshTokensRequest\x12#\n" +
 	"\rrefresh_token\x18\x01 \x01(\tR\frefreshToken\"<\n" +
 	"\x19StartResetPasswordRequest\x12\x1f\n" +
@@ -277,10 +277,9 @@ const file_contracts_auth_v1_auth_proto_rawDesc = "" +
 	"\x14ResetPasswordRequest\x12\x1d\n" +
 	"\n" +
 	"reset_code\x18\x01 \x01(\tR\tresetCode\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword2\xfe\x02\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword2\xb2\x02\n" +
 	"\x04Auth\x12F\n" +
-	"\vSetPassword\x12\x1b.auth.v1.CredentialsRequest\x1a\x1a.auth.v1.IsSuccessResponse\x12J\n" +
-	"\rRefreshTokens\x12\x1d.auth.v1.RefreshTokensRequest\x1a\x1a.auth.v1.IsSuccessResponse\x12@\n" +
+	"\vSetPassword\x12\x1b.auth.v1.CredentialsRequest\x1a\x1a.auth.v1.IsSuccessResponse\x12@\n" +
 	"\x05Login\x12\x1b.auth.v1.CredentialsRequest\x1a\x1a.auth.v1.IsSuccessResponse\x12T\n" +
 	"\x12StartResetPassword\x12\".auth.v1.StartResetPasswordRequest\x1a\x1a.auth.v1.IsSuccessResponse\x12J\n" +
 	"\rResetPassword\x12\x1d.auth.v1.ResetPasswordRequest\x1a\x1a.auth.v1.IsSuccessResponseB\x13Z\x11contracts/auth/v1b\x06proto3"
@@ -307,17 +306,15 @@ var file_contracts_auth_v1_auth_proto_goTypes = []any{
 }
 var file_contracts_auth_v1_auth_proto_depIdxs = []int32{
 	0, // 0: auth.v1.Auth.SetPassword:input_type -> auth.v1.CredentialsRequest
-	2, // 1: auth.v1.Auth.RefreshTokens:input_type -> auth.v1.RefreshTokensRequest
-	0, // 2: auth.v1.Auth.Login:input_type -> auth.v1.CredentialsRequest
-	3, // 3: auth.v1.Auth.StartResetPassword:input_type -> auth.v1.StartResetPasswordRequest
-	4, // 4: auth.v1.Auth.ResetPassword:input_type -> auth.v1.ResetPasswordRequest
-	1, // 5: auth.v1.Auth.SetPassword:output_type -> auth.v1.IsSuccessResponse
-	1, // 6: auth.v1.Auth.RefreshTokens:output_type -> auth.v1.IsSuccessResponse
-	1, // 7: auth.v1.Auth.Login:output_type -> auth.v1.IsSuccessResponse
-	1, // 8: auth.v1.Auth.StartResetPassword:output_type -> auth.v1.IsSuccessResponse
-	1, // 9: auth.v1.Auth.ResetPassword:output_type -> auth.v1.IsSuccessResponse
-	5, // [5:10] is the sub-list for method output_type
-	0, // [0:5] is the sub-list for method input_type
+	0, // 1: auth.v1.Auth.Login:input_type -> auth.v1.CredentialsRequest
+	3, // 2: auth.v1.Auth.StartResetPassword:input_type -> auth.v1.StartResetPasswordRequest
+	4, // 3: auth.v1.Auth.ResetPassword:input_type -> auth.v1.ResetPasswordRequest
+	1, // 4: auth.v1.Auth.SetPassword:output_type -> auth.v1.IsSuccessResponse
+	1, // 5: auth.v1.Auth.Login:output_type -> auth.v1.IsSuccessResponse
+	1, // 6: auth.v1.Auth.StartResetPassword:output_type -> auth.v1.IsSuccessResponse
+	1, // 7: auth.v1.Auth.ResetPassword:output_type -> auth.v1.IsSuccessResponse
+	4, // [4:8] is the sub-list for method output_type
+	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name

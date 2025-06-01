@@ -20,7 +20,6 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	Auth_SetPassword_FullMethodName        = "/auth.v1.Auth/SetPassword"
-	Auth_RefreshTokens_FullMethodName      = "/auth.v1.Auth/RefreshTokens"
 	Auth_Login_FullMethodName              = "/auth.v1.Auth/Login"
 	Auth_StartResetPassword_FullMethodName = "/auth.v1.Auth/StartResetPassword"
 	Auth_ResetPassword_FullMethodName      = "/auth.v1.Auth/ResetPassword"
@@ -31,7 +30,6 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AuthClient interface {
 	SetPassword(ctx context.Context, in *CredentialsRequest, opts ...grpc.CallOption) (*IsSuccessResponse, error)
-	RefreshTokens(ctx context.Context, in *RefreshTokensRequest, opts ...grpc.CallOption) (*IsSuccessResponse, error)
 	Login(ctx context.Context, in *CredentialsRequest, opts ...grpc.CallOption) (*IsSuccessResponse, error)
 	StartResetPassword(ctx context.Context, in *StartResetPasswordRequest, opts ...grpc.CallOption) (*IsSuccessResponse, error)
 	ResetPassword(ctx context.Context, in *ResetPasswordRequest, opts ...grpc.CallOption) (*IsSuccessResponse, error)
@@ -49,16 +47,6 @@ func (c *authClient) SetPassword(ctx context.Context, in *CredentialsRequest, op
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(IsSuccessResponse)
 	err := c.cc.Invoke(ctx, Auth_SetPassword_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *authClient) RefreshTokens(ctx context.Context, in *RefreshTokensRequest, opts ...grpc.CallOption) (*IsSuccessResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(IsSuccessResponse)
-	err := c.cc.Invoke(ctx, Auth_RefreshTokens_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -100,7 +88,6 @@ func (c *authClient) ResetPassword(ctx context.Context, in *ResetPasswordRequest
 // for forward compatibility.
 type AuthServer interface {
 	SetPassword(context.Context, *CredentialsRequest) (*IsSuccessResponse, error)
-	RefreshTokens(context.Context, *RefreshTokensRequest) (*IsSuccessResponse, error)
 	Login(context.Context, *CredentialsRequest) (*IsSuccessResponse, error)
 	StartResetPassword(context.Context, *StartResetPasswordRequest) (*IsSuccessResponse, error)
 	ResetPassword(context.Context, *ResetPasswordRequest) (*IsSuccessResponse, error)
@@ -116,9 +103,6 @@ type UnimplementedAuthServer struct{}
 
 func (UnimplementedAuthServer) SetPassword(context.Context, *CredentialsRequest) (*IsSuccessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetPassword not implemented")
-}
-func (UnimplementedAuthServer) RefreshTokens(context.Context, *RefreshTokensRequest) (*IsSuccessResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RefreshTokens not implemented")
 }
 func (UnimplementedAuthServer) Login(context.Context, *CredentialsRequest) (*IsSuccessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
@@ -164,24 +148,6 @@ func _Auth_SetPassword_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServer).SetPassword(ctx, req.(*CredentialsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Auth_RefreshTokens_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RefreshTokensRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AuthServer).RefreshTokens(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Auth_RefreshTokens_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).RefreshTokens(ctx, req.(*RefreshTokensRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -250,10 +216,6 @@ var Auth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SetPassword",
 			Handler:    _Auth_SetPassword_Handler,
-		},
-		{
-			MethodName: "RefreshTokens",
-			Handler:    _Auth_RefreshTokens_Handler,
 		},
 		{
 			MethodName: "Login",

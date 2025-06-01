@@ -6,7 +6,6 @@ option go_package = "contracts/auth/v1";
 
 service Auth {
   rpc SetPassword (CredentialsRequest) returns (IsSuccessResponse);
-  rpc RefreshTokens (RefreshTokensRequest) returns (IsSuccessResponse);
   rpc Login (CredentialsRequest) returns (IsSuccessResponse);
   rpc StartResetPassword (StartResetPasswordRequest) returns (IsSuccessResponse);
   rpc ResetPassword (ResetPasswordRequest) returns (IsSuccessResponse);
@@ -18,7 +17,7 @@ message CredentialsRequest {
 }
 
 message IsSuccessResponse {
-  string is_success = 1;
+  bool is_success = 1;
 }
 
 message RefreshTokensRequest {
