@@ -30,11 +30,11 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AuthClient interface {
-	SetPassword(ctx context.Context, in *CredentialsRequest, opts ...grpc.CallOption) (*TokensResponse, error)
-	RefreshTokens(ctx context.Context, in *RefreshTokensRequest, opts ...grpc.CallOption) (*TokensResponse, error)
-	Login(ctx context.Context, in *CredentialsRequest, opts ...grpc.CallOption) (*TokensResponse, error)
-	StartResetPassword(ctx context.Context, in *StartResetPasswordRequest, opts ...grpc.CallOption) (*StartResetPasswordResponse, error)
-	ResetPassword(ctx context.Context, in *ResetPasswordRequest, opts ...grpc.CallOption) (*TokensResponse, error)
+	SetPassword(ctx context.Context, in *CredentialsRequest, opts ...grpc.CallOption) (*IsSuccessResponse, error)
+	RefreshTokens(ctx context.Context, in *RefreshTokensRequest, opts ...grpc.CallOption) (*IsSuccessResponse, error)
+	Login(ctx context.Context, in *CredentialsRequest, opts ...grpc.CallOption) (*IsSuccessResponse, error)
+	StartResetPassword(ctx context.Context, in *StartResetPasswordRequest, opts ...grpc.CallOption) (*IsSuccessResponse, error)
+	ResetPassword(ctx context.Context, in *ResetPasswordRequest, opts ...grpc.CallOption) (*IsSuccessResponse, error)
 }
 
 type authClient struct {
@@ -45,9 +45,9 @@ func NewAuthClient(cc grpc.ClientConnInterface) AuthClient {
 	return &authClient{cc}
 }
 
-func (c *authClient) SetPassword(ctx context.Context, in *CredentialsRequest, opts ...grpc.CallOption) (*TokensResponse, error) {
+func (c *authClient) SetPassword(ctx context.Context, in *CredentialsRequest, opts ...grpc.CallOption) (*IsSuccessResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(TokensResponse)
+	out := new(IsSuccessResponse)
 	err := c.cc.Invoke(ctx, Auth_SetPassword_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -55,9 +55,9 @@ func (c *authClient) SetPassword(ctx context.Context, in *CredentialsRequest, op
 	return out, nil
 }
 
-func (c *authClient) RefreshTokens(ctx context.Context, in *RefreshTokensRequest, opts ...grpc.CallOption) (*TokensResponse, error) {
+func (c *authClient) RefreshTokens(ctx context.Context, in *RefreshTokensRequest, opts ...grpc.CallOption) (*IsSuccessResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(TokensResponse)
+	out := new(IsSuccessResponse)
 	err := c.cc.Invoke(ctx, Auth_RefreshTokens_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -65,9 +65,9 @@ func (c *authClient) RefreshTokens(ctx context.Context, in *RefreshTokensRequest
 	return out, nil
 }
 
-func (c *authClient) Login(ctx context.Context, in *CredentialsRequest, opts ...grpc.CallOption) (*TokensResponse, error) {
+func (c *authClient) Login(ctx context.Context, in *CredentialsRequest, opts ...grpc.CallOption) (*IsSuccessResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(TokensResponse)
+	out := new(IsSuccessResponse)
 	err := c.cc.Invoke(ctx, Auth_Login_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -75,9 +75,9 @@ func (c *authClient) Login(ctx context.Context, in *CredentialsRequest, opts ...
 	return out, nil
 }
 
-func (c *authClient) StartResetPassword(ctx context.Context, in *StartResetPasswordRequest, opts ...grpc.CallOption) (*StartResetPasswordResponse, error) {
+func (c *authClient) StartResetPassword(ctx context.Context, in *StartResetPasswordRequest, opts ...grpc.CallOption) (*IsSuccessResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(StartResetPasswordResponse)
+	out := new(IsSuccessResponse)
 	err := c.cc.Invoke(ctx, Auth_StartResetPassword_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -85,9 +85,9 @@ func (c *authClient) StartResetPassword(ctx context.Context, in *StartResetPassw
 	return out, nil
 }
 
-func (c *authClient) ResetPassword(ctx context.Context, in *ResetPasswordRequest, opts ...grpc.CallOption) (*TokensResponse, error) {
+func (c *authClient) ResetPassword(ctx context.Context, in *ResetPasswordRequest, opts ...grpc.CallOption) (*IsSuccessResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(TokensResponse)
+	out := new(IsSuccessResponse)
 	err := c.cc.Invoke(ctx, Auth_ResetPassword_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -99,11 +99,11 @@ func (c *authClient) ResetPassword(ctx context.Context, in *ResetPasswordRequest
 // All implementations must embed UnimplementedAuthServer
 // for forward compatibility.
 type AuthServer interface {
-	SetPassword(context.Context, *CredentialsRequest) (*TokensResponse, error)
-	RefreshTokens(context.Context, *RefreshTokensRequest) (*TokensResponse, error)
-	Login(context.Context, *CredentialsRequest) (*TokensResponse, error)
-	StartResetPassword(context.Context, *StartResetPasswordRequest) (*StartResetPasswordResponse, error)
-	ResetPassword(context.Context, *ResetPasswordRequest) (*TokensResponse, error)
+	SetPassword(context.Context, *CredentialsRequest) (*IsSuccessResponse, error)
+	RefreshTokens(context.Context, *RefreshTokensRequest) (*IsSuccessResponse, error)
+	Login(context.Context, *CredentialsRequest) (*IsSuccessResponse, error)
+	StartResetPassword(context.Context, *StartResetPasswordRequest) (*IsSuccessResponse, error)
+	ResetPassword(context.Context, *ResetPasswordRequest) (*IsSuccessResponse, error)
 	mustEmbedUnimplementedAuthServer()
 }
 
@@ -114,19 +114,19 @@ type AuthServer interface {
 // pointer dereference when methods are called.
 type UnimplementedAuthServer struct{}
 
-func (UnimplementedAuthServer) SetPassword(context.Context, *CredentialsRequest) (*TokensResponse, error) {
+func (UnimplementedAuthServer) SetPassword(context.Context, *CredentialsRequest) (*IsSuccessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetPassword not implemented")
 }
-func (UnimplementedAuthServer) RefreshTokens(context.Context, *RefreshTokensRequest) (*TokensResponse, error) {
+func (UnimplementedAuthServer) RefreshTokens(context.Context, *RefreshTokensRequest) (*IsSuccessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RefreshTokens not implemented")
 }
-func (UnimplementedAuthServer) Login(context.Context, *CredentialsRequest) (*TokensResponse, error) {
+func (UnimplementedAuthServer) Login(context.Context, *CredentialsRequest) (*IsSuccessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
 }
-func (UnimplementedAuthServer) StartResetPassword(context.Context, *StartResetPasswordRequest) (*StartResetPasswordResponse, error) {
+func (UnimplementedAuthServer) StartResetPassword(context.Context, *StartResetPasswordRequest) (*IsSuccessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StartResetPassword not implemented")
 }
-func (UnimplementedAuthServer) ResetPassword(context.Context, *ResetPasswordRequest) (*TokensResponse, error) {
+func (UnimplementedAuthServer) ResetPassword(context.Context, *ResetPasswordRequest) (*IsSuccessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ResetPassword not implemented")
 }
 func (UnimplementedAuthServer) mustEmbedUnimplementedAuthServer() {}
